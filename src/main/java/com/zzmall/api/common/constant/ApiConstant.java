@@ -20,4 +20,14 @@ public interface ApiConstant {
      * 管理员标识
      */
     Integer ADMIN_USER = 1;
+
+    /**
+     * 默认当前页
+     */
+    Integer DEFAULT_PAGE = 1;
+
+    /**
+     * 默认每页的大小
+     */
+    Integer DEFAULT_PAGE_SIZE = 10;
 }

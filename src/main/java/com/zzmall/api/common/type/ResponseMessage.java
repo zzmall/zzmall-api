@@ -13,6 +13,10 @@ public enum ResponseMessage {
 
     FAIL("服务器异常"),
 
+    PRODUCT_SELECT_FAIL("参数错误"),
+    PRODUCT_ID_NULL("商品id不能为空"),
+    PRODUCT_SELECT_ID_FAIL("该商品已下架或已删除"),
+
     USER_LOGIN_SUCCESS("登陆成功"),
     USER_LOGIN_FAIL("登陆失败"),
     USER_NOT_LOGIN("用户未登录,无法获取当前用户信息"),

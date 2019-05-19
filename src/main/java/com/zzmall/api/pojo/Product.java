@@ -1,6 +1,7 @@
 package com.zzmall.api.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "zzmall_product")
 @DynamicUpdate
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
 public class Product extends BaseDate {
 
   private Integer categoryId;
