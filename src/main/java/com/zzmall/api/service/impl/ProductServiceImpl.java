@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * @Author Connor
  * @Date 2019/05/19 17:13
@@ -20,7 +22,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-
 
     @Override
     public Page<Product> findAll(Pageable pageable) {
@@ -38,11 +39,13 @@ public class ProductServiceImpl implements ProductService {
             throw new ApiException(ResponseMessage.PRODUCT_ID_NULL);
         }
 
-        try {
-            return productRepository.findAllByCategoryId(categoryId, pageable);
-        } catch (Exception e) {
+        Page<Product> productPage = productRepository.findAllByCategoryId(categoryId, pageable);
+
+        if (productPage == null) {
             throw new ApiException(ResponseMessage.PRODUCT_SELECT_ID_FAIL);
         }
+
+        return productPage;
 
     }
 
@@ -53,11 +56,12 @@ public class ProductServiceImpl implements ProductService {
             throw new ApiException(ResponseMessage.PRODUCT_ID_NULL);
         }
 
-        try {
-            return productRepository.getOne(id);
-        } catch (Exception e) {
+        Optional<Product> product = productRepository.findById(id);
+        if (!product.isPresent()) {
             throw new ApiException(ResponseMessage.PRODUCT_SELECT_ID_FAIL);
         }
+
+        return product.get();
     }
 
     @Override
@@ -66,10 +70,12 @@ public class ProductServiceImpl implements ProductService {
             throw new ApiException(ResponseMessage.PRODUCT_ID_NULL);
         }
 
-        try {
-            return productRepository.getByCategoryId(id);
-        } catch (Exception e) {
+        Product product = productRepository.getByCategoryId(id);
+
+        if (product == null) {
             throw new ApiException(ResponseMessage.PRODUCT_SELECT_ID_FAIL);
         }
+
+        return product;
     }
 }

@@ -30,4 +30,5 @@ public interface ApiConstant {
      * 默认每页的大小
      */
     Integer DEFAULT_PAGE_SIZE = 10;
+
 }

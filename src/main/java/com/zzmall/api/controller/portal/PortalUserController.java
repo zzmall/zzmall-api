@@ -12,6 +12,7 @@ import com.zzmall.api.exception.ApiException;
 import com.zzmall.api.pojo.User;
 import com.zzmall.api.service.UserService;
 import com.zzmall.api.util.EncryptUtil;
+import com.zzmall.api.util.SecurityUtil;
 import io.netty.util.internal.StringUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,8 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class PortalUserController {
 
-
     @Autowired
     private UserService userService;
-
 
     @RequestMapping(value = "/register.do", method = RequestMethod.POST)
     public ResponseVO register(@Valid RegisterForm form, BindingResult result) {
@@ -67,15 +66,8 @@ public class PortalUserController {
 
     @RequestMapping("/get_user_info.do")
     public ResponseVO<User> getUserInfo(HttpServletRequest request) {
-
-        //获取session
-        HttpSession session = request.getSession();
-
-        User user = (User) session.getAttribute(ApiConstant.LOGIN_PREFIX);
-
-        if (user == null) {
-            throw new ApiException(ResponseCode.NOT_LOGIN.getCode(), ResponseMessage.USER_NOT_LOGIN.getMessage());
-        }
+        //获取登陆的用户信息
+        User user = SecurityUtil.isLogin(request.getSession());
         return ResponseVO.success(user);
 
     }
@@ -191,13 +183,5 @@ public class PortalUserController {
 
         return ResponseVO.success(ResponseMessage.USER_UPDATE_INFO_SUCCESS);
     }
-
-
-
-
-
-
-
-
 
 }

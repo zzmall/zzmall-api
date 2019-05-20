@@ -48,8 +48,8 @@ public class ResponseVO<T> {
         return new ResponseVO(ResponseCode.SUCCESS, ResponseMessage.USER_CHECK);
     }
 
-    public static ResponseVO success(Object data) {
-        return new ResponseVO(ResponseCode.SUCCESS, data);
+    public static <T> ResponseVO<T> success(T data) {
+        return new ResponseVO<T>(ResponseCode.SUCCESS, data);
     }
 
     public static ResponseVO success(ResponseMessage message) {
@@ -76,7 +76,4 @@ public class ResponseVO<T> {
         return new ResponseVO(status, message);
     }
 
-    public static ResponseVO notLogin() {
-        return new ResponseVO(ResponseCode.NOT_LOGIN, ResponseMessage.USER_NOT_LOGIN);
-    }
 }

@@ -22,7 +22,7 @@ import java.util.Date;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Data
-public abstract class BaseDate {
+public abstract class BaseObject {
 
 
     /**

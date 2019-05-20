@@ -3,6 +3,7 @@ package com.zzmall.api.pojo;
 
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,7 +12,8 @@ import java.math.BigDecimal;
 @Data
 @Table(name = "zzmall_order_item")
 @DynamicUpdate
-public class OrderItem extends BaseDate {
+@Proxy(lazy = false)
+public class OrderItem extends BaseObject {
 
   private Integer userId;
   private Integer orderNo;

@@ -4,6 +4,7 @@ package com.zzmall.api.pojo;
 import com.zzmall.api.common.constant.ApiConstant;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 
@@ -11,7 +12,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "zzmall_user")
 @DynamicUpdate
-public class User extends BaseDate {
+@Proxy(lazy = false)
+public class User extends BaseObject {
 
   private String username;
   private String password;

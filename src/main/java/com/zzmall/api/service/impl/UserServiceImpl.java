@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author Connor
@@ -63,11 +64,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(EncryptUtil.md5(user.getPassword()));
 
         //注册
-        try {
-            userRepositor.save(user);
-        } catch (Exception e) {
-            throw new ApiException(ResponseMessage.USER_REGISTER_FAIL);
-        }
+        if (userRepositor.save(user) == null) throw new ApiException(ResponseMessage.USER_REGISTER_FAIL);
     }
 
     @Override
@@ -76,20 +73,23 @@ public class UserServiceImpl implements UserService {
             throw new ApiException(ResponseMessage.USER_FAIL);
         }
 
-        try {
-            return userRepositor.getOne(id);
-        } catch (Exception e) {
+        Optional<User> user = userRepositor.findById(id);
+        if (!user.isPresent()) {
             throw new ApiException(ResponseMessage.USER_FAIL);
         }
+        return user.get();
     }
 
     @Override
     public User getUserByUsername(String username) {
-        try {
-            return userRepositor.getUserByUsername(username);
-        } catch (Exception e) {
+
+        User user = userRepositor.getUserByUsername(username);
+
+        if (user == null) {
             throw new ApiException(ResponseMessage.USER_FAIL);
         }
+
+        return user;
     }
 
     @Override
@@ -101,20 +101,17 @@ public class UserServiceImpl implements UserService {
         //加密
         user.setPassword(EncryptUtil.md5(user.getPassword()));
 
-        try {
-            userRepositor.save(user);
-        } catch (Exception e) {
-            throw new ApiException(ResponseMessage.USER_PASSWORD_UPDATE_FAIL);
-        }
+        //保存修改
+        if (userRepositor.save(user) == null) throw new ApiException(ResponseMessage.USER_PASSWORD_UPDATE_FAIL);
     }
 
     @Override
     public List<User> list() {
 
-        try {
-            return userRepositor.findAll();
-        } catch (Exception e) {
+        List<User> list = userRepositor.findAll();
+        if (list == null) {
             throw new ApiException(ResponseMessage.FAIL);
         }
+        return list;
     }
 }

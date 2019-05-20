@@ -62,4 +62,13 @@ public class UserRepositorTest {
 
     }
 
+    @Test
+    public void test2() {
+
+        User user = userRepositor.getUserByUsername("abcd");
+
+        log.info("user: {}", user);
+
+    }
+
 }

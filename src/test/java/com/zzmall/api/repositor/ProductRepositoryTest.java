@@ -14,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 /**
@@ -44,9 +46,8 @@ public class ProductRepositoryTest {
     @Test
     public void test() {
 
-        Product product = productRepository.getByCategoryId(100002);
-
-        Assert.assertNotNull(product);
+        Optional<Product> product = productRepository.findById(1);
+        log.info("product: {}", product.isPresent());
 
     }
 }

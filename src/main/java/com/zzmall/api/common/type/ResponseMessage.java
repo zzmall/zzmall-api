@@ -14,8 +14,15 @@ public enum ResponseMessage {
     FAIL("服务器异常"),
 
     PRODUCT_SELECT_FAIL("参数错误"),
-    PRODUCT_ID_NULL("商品id不能为空"),
+    PRODUCT_ID_NULL("商品不存在"),
     PRODUCT_SELECT_ID_FAIL("该商品已下架或已删除"),
+
+    CART_NULL("购物车为空"),
+    CART_PRODUCT_ADD_FAIL("商品添加失败"),
+    CART_PRODUCT_UPDATE_FAIL("商品更新失败"),
+    CART_PRODUCT_ADD_REPEAT_FAIL("商品重复"),
+    CART_PRODUCT_UPDATE_NULL("您的购物车中没有该商品"),
+
 
     USER_LOGIN_SUCCESS("登陆成功"),
     USER_LOGIN_FAIL("登陆失败"),

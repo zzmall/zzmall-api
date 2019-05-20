@@ -3,6 +3,7 @@ package com.zzmall.api.pojo;
 
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 
@@ -10,7 +11,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "zzmall_shipping")
 @DynamicUpdate
-public class Shipping extends BaseDate {
+@Proxy(lazy = false)
+public class Shipping extends BaseObject {
 
   private Integer userId;
   private String receiverName;
