@@ -46,4 +46,11 @@ public abstract class BaseObject {
     @LastModifiedDate
     private Date updateTime;
 
+    public BaseObject() {
+
+    }
+
+    public BaseObject(Integer id) {
+        this.id = id;
+    }
 }

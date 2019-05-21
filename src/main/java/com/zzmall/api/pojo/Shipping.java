@@ -24,4 +24,10 @@ public class Shipping extends BaseObject {
   private String receiverAddress;
   private String receiverZip;
 
+  public Shipping() {
+  }
+
+  public Shipping(Integer id) {
+    super(id);
+  }
 }
