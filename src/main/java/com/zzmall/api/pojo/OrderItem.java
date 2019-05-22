@@ -7,6 +7,7 @@ import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Entity
 @Data
@@ -16,7 +17,7 @@ import java.math.BigDecimal;
 public class OrderItem extends BaseObject {
 
   private Integer userId;
-  private Integer orderNo;
+  private BigInteger orderNo;
   private Integer productId;
   private String productName;
   private String productImage;

@@ -44,7 +44,7 @@ public class CartProductDTO {
     private String productSubtitle;
 
     /**
-     * 商品小图
+     * 商品主图
      */
     private String productMainImage;
 

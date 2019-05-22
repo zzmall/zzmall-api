@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 @Data
 @Entity
@@ -15,7 +16,7 @@ import javax.persistence.*;
 public class PayInfo extends BaseObject {
 
   private Integer userId;
-  private Integer orderNo;
+  private BigInteger orderNo;
   private Integer payPlatform;
   private String platformNumber;
   private String platformStatus;

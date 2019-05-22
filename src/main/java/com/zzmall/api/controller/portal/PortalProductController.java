@@ -27,7 +27,6 @@ public class PortalProductController {
     @Autowired
     private ProductService productService;
 
-
     @RequestMapping("/list.do")
     public ResponseVO<Page<Product>> list(@Valid ProductListForm form, BindingResult result) {
 

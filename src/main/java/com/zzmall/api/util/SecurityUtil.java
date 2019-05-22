@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
  * @Author Connor
  * @Date 2019/05/20 22:02
  */
-public class SecurityUtil {
+public abstract class SecurityUtil {
 
     /**
      * 校验用户是否登陆

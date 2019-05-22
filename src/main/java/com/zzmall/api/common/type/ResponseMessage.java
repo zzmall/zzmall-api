@@ -17,6 +17,10 @@ public enum ResponseMessage {
     PRODUCT_ID_NULL("商品不存在"),
     PRODUCT_SELECT_ID_FAIL("该商品已下架或已删除"),
 
+    ORDER_CREATE_FAIL("创建订单失败"),
+    ORDER_ID_NULL("找不到此订单"),
+    ORDER_CANCEL_PAY_FAIL("此订单已付款，无法被取消"),
+
     SHIPPING_ID_NULL("该收货地址不存在或已删除"),
     SHIPPING_ADD_FAIL("新建地址失败"),
     SHIPPING_ADD_SUCCESS("新建地址成功"),

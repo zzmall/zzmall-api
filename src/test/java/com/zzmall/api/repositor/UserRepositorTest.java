@@ -2,6 +2,7 @@ package com.zzmall.api.repositor;
 
 import com.zzmall.api.pojo.User;
 import com.zzmall.api.util.EncryptUtil;
+import com.zzmall.api.util.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -68,6 +69,12 @@ public class UserRepositorTest {
         User user = userRepositor.getUserByUsername("abcd");
 
         log.info("user: {}", user);
+
+    }
+
+    @Test
+    public void test3() {
+        log.info("唯一主键：{}", KeyUtil.genUniqueKey());
 
     }
 
