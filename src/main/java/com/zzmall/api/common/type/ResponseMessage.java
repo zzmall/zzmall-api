@@ -19,6 +19,9 @@ public enum ResponseMessage {
 
     ORDER_CREATE_FAIL("创建订单失败"),
     ORDER_ID_NULL("找不到此订单"),
+    ORDER_PAY_REPEAT_FAIL("此订单已付款，请勿重复付款"),
+    ORDER_PAY_FAIL("订单支付失败"),
+    ORDER_PAY_SUCCESS("订单支付成功"),
     ORDER_CANCEL_PAY_FAIL("此订单已付款，无法被取消"),
 
     SHIPPING_ID_NULL("该收货地址不存在或已删除"),
