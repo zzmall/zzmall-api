@@ -2,9 +2,7 @@ package com.zzmall.api.exception;
 
 import com.zzmall.api.common.type.ResponseCode;
 import com.zzmall.api.common.type.ResponseMessage;
-import com.zzmall.api.common.vo.ResponseVO;
 import lombok.Data;
-import lombok.Getter;
 
 /**
  * @Author Connor

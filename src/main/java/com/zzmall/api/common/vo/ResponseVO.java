@@ -60,18 +60,6 @@ public class ResponseVO<T> {
         return new ResponseVO(status, message);
     }
 
-    public static ResponseVO error() {
-        return new ResponseVO(ResponseCode.FAIL, ResponseMessage.FAIL);
-    }
-
-    public static ResponseVO error(String message) {
-        return new ResponseVO(ResponseCode.FAIL.getCode(), message);
-    }
-
-    public static ResponseVO error(ResponseMessage message) {
-        return new ResponseVO(ResponseCode.FAIL, message);
-    }
-
     public static ResponseVO error(Integer status, String message) {
         return new ResponseVO(status, message);
     }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -27,8 +26,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login.do", method = RequestMethod.POST)
     public ResponseVO<User> login(String username, String password,
-                            HttpServletRequest httpServletRequest,
-                            HttpServletResponse httpServletResponse) {
+                            HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
 
         User user = userService.login(username, password);
@@ -40,8 +38,7 @@ public class LoginController {
 
 
     @RequestMapping(value = "/logout.do")
-    public ResponseVO<User> logout(HttpServletRequest httpServletRequest,
-                                   HttpServletResponse httpServletResponse) {
+    public ResponseVO<User> logout(HttpServletRequest httpServletRequest) {
 
         HttpSession session = httpServletRequest.getSession();
         //清除用户信息
