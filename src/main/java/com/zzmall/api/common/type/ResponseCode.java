@@ -9,7 +9,7 @@ import lombok.Getter;
  * 返回给前端的状态码
  */
 @Getter
-public enum ResponseCode {
+public enum ResponseCode implements BaseResponse {
 
     SUCCESS(0),
     FAIL(1),
@@ -19,17 +19,16 @@ public enum ResponseCode {
 
     private Integer code;
 
+//
+
 
     ResponseCode(Integer code) {
         this.code = code;
     }
 
 
-
-
-
-
-
-
-
+    @Override
+    public String getMessage() {
+        return null;
+    }
 }

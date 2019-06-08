@@ -1,4 +1,4 @@
-package com.zzmall.api.controller.portal;
+package com.zzmall.api.controller;
 
 import com.zzmall.api.common.form.ProductListForm;
 import com.zzmall.api.common.type.ProductSortType;
@@ -30,11 +30,7 @@ public class PortalProductController {
     @RequestMapping("/list.do")
     public ResponseVO<Page<Product>> list(@Valid ProductListForm form, BindingResult result) {
 
-        if (result.hasErrors()) {
-            throw new ApiException(result.getFieldError().getDefaultMessage());
-        }
-
-        Page<Product> pages = null;
+        Page<Product> pages;
 
         //如果orderBy为空
         if (form.getOrderBy().equals(StringUtil.EMPTY_STRING)) {
@@ -55,7 +51,7 @@ public class PortalProductController {
     }
 
     @RequestMapping("/detail.do")
-    public ResponseVO<Product> detail(Integer productId) {
+    public ResponseVO<Product> detail(@Valid Integer productId, BindingResult bindingResult) {
         Product product = productService.getProductById(productId);
         return ResponseVO.success(product);
     }

@@ -1,4 +1,4 @@
-package com.zzmall.api.controller.portal;
+package com.zzmall.api.controller;
 
 import com.zzmall.api.common.constant.ApiConstant;
 import com.zzmall.api.common.form.AnswerForm;

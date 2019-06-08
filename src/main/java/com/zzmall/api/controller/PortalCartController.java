@@ -1,4 +1,4 @@
-package com.zzmall.api.controller.portal;
+package com.zzmall.api.controller;
 
 import com.zzmall.api.common.constant.CartProductConstant;
 import com.zzmall.api.common.type.ResponseMessage;
@@ -11,10 +11,12 @@ import com.zzmall.api.service.CartService;
 import com.zzmall.api.util.SecurityUtil;
 import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 /**
  * @Author Connor
@@ -49,18 +51,11 @@ public class PortalCartController {
      * @return
      */
     @RequestMapping("/add.do")
-    public ResponseVO<CartProductVO> add(Integer productId, Integer count, HttpServletRequest request) {
-
+    public ResponseVO<CartProductVO> add(@Valid Integer productId,
+                                         @Valid Integer count,
+                                         BindingResult br,
+                                         HttpServletRequest request) {
         User user = SecurityUtil.isLogin(request.getSession());
-
-        if (productId == null) {
-            throw new ApiException(ResponseMessage.PRODUCT_ID_NULL);
-        }
-
-        if (count == null) {
-            throw new ApiException(ResponseMessage.PRODUCT_SELECT_FAIL);
-        }
-
         Cart cart = new Cart(user.getId(), productId, count);
         CartProductVO result = cartService.add(cart);
         return ResponseVO.success(result);
@@ -75,18 +70,12 @@ public class PortalCartController {
      * @return
      */
     @RequestMapping("/update.do")
-    public ResponseVO<CartProductVO> update(Integer productId, Integer count, HttpServletRequest request) {
+    public ResponseVO<CartProductVO> update(@Valid Integer productId,
+                                            @Valid Integer count,
+                                            BindingResult br,
+                                            HttpServletRequest request) {
 
         User user = SecurityUtil.isLogin(request.getSession());
-
-        if (productId == null) {
-            throw new ApiException(ResponseMessage.PRODUCT_ID_NULL);
-        }
-
-        if (count == null) {
-            throw new ApiException(ResponseMessage.PRODUCT_SELECT_FAIL);
-        }
-
         Cart cart = new Cart(user.getId(), productId, count);
         CartProductVO result = cartService.update(cart);
         return ResponseVO.success(result);
@@ -100,12 +89,10 @@ public class PortalCartController {
      * @return
      */
     @RequestMapping("/delete_product.do")
-    public ResponseVO<CartProductVO> delete(String productIds, HttpServletRequest request) {
+    public ResponseVO<CartProductVO> delete(@Valid String productIds,
+                                            BindingResult br,
+                                            HttpServletRequest request) {
         User user = SecurityUtil.isLogin(request.getSession());
-
-        if (StringUtil.isNullOrEmpty(productIds)) {
-            throw new ApiException(ResponseMessage.PRODUCT_ID_NULL);
-        }
 
         //分割
         String[] strings = productIds.split(",");

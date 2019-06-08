@@ -1,17 +1,20 @@
 package com.zzmall.api.controller;
 
 import com.zzmall.api.common.constant.ApiConstant;
+import com.zzmall.api.common.form.LoginForm;
 import com.zzmall.api.common.type.ResponseMessage;
 import com.zzmall.api.common.vo.ResponseVO;
 import com.zzmall.api.pojo.User;
 import com.zzmall.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @Author Connor
@@ -24,12 +27,13 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
-    public ResponseVO<User> login(String username, String password,
-                            HttpServletRequest httpServletRequest) {
+    @RequestMapping(value = "/login.do")
+    public ResponseVO<User> login(@Valid LoginForm form,
+                                  BindingResult bindingResult,
+                                  HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
 
-        User user = userService.login(username, password);
+        User user = userService.login(form.getUsername(), form.getPassword());
 
         session.setAttribute(ApiConstant.LOGIN_PREFIX, user);
 
@@ -47,6 +51,10 @@ public class LoginController {
         return ResponseVO.success(ResponseMessage.USER_LOGOUT_SUCCESS);
     }
 
+    @RequestMapping(value = "/test.do")
+    public ResponseVO test(@NotBlank(message = "名称不能为空") String name, BindingResult bindingResult) {
+        return ResponseVO.success(name);
+    }
 
 
 }

@@ -52,8 +52,12 @@ public class ResponseVO<T> {
         return new ResponseVO<T>(ResponseCode.SUCCESS, data);
     }
 
-    public static ResponseVO success(ResponseMessage message) {
-        return new ResponseVO(ResponseCode.SUCCESS, message);
+    public static <T> ResponseVO<T> success(String message) {
+        return new ResponseVO<T>(ResponseCode.SUCCESS.getCode(), message);
+    }
+
+    public static <T> ResponseVO<T> success(ResponseMessage message) {
+        return new ResponseVO<T>(ResponseCode.SUCCESS, message);
     }
 
     public static ResponseVO success(Integer status, String message) {

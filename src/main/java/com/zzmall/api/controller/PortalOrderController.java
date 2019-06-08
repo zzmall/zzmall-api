@@ -1,4 +1,4 @@
-package com.zzmall.api.controller.portal;
+package com.zzmall.api.controller;
 
 import com.zzmall.api.common.form.PageForm;
 import com.zzmall.api.common.type.ResponseMessage;

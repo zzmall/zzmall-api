@@ -1,4 +1,4 @@
-package com.zzmall.api.controller.portal;
+package com.zzmall.api.controller;
 
 import com.zzmall.api.common.type.ResponseMessage;
 import com.zzmall.api.common.vo.OrderPayVO;

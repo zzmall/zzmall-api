@@ -9,7 +9,7 @@ import lombok.Getter;
  * 返回给前端的提示信息
  */
 @Getter
-public enum ResponseMessage {
+public enum ResponseMessage implements BaseResponse {
 
     FAIL("服务器异常"),
 
@@ -67,5 +67,11 @@ public enum ResponseMessage {
 
     ResponseMessage(String message) {
         this.message = message;
+    }
+
+
+    @Override
+    public Integer getCode() {
+        return null;
     }
 }
